@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алгоритмы по ГОСТ</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif; /* Часто используется в ГОСТ документации */
+            background-color: white;
+            color: black;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .algorithm-container {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="algorithm-container">
+        <h2>АЛГОРИТМ 1: ОТКАТ ДЕЙСТВИЯ</h2>
+        <div class="mermaid">
+            flowchart TD
+                Start([Начало]) --> Req[/Получение POST /rollback/]
+                Req --> P1[Поиск AdminLog по ID]
+                P1 --> P2[Парсинг before_state]
+                P2 --> P3[Поиск объекта в базе данных]
+                P3 --> P4[Применение сохраненного состояния]
+                P4 --> P5[Сохранение изменений в БД]
+                P5 --> Out[/Отправка ответа: Успешный откат/]
+                Out --> End([Конец])
+        </div>
+    </div>
+
+    <div class="algorithm-container">
+        <h2>АЛГОРИТМ 2: ОБРАБОТКА ЗАЯВКИ</h2>
+        <div class="mermaid">
+            flowchart TD
+                Start([Начало]) --> Req[/Получение данных новой заявки/]
+                Req --> P1[Валидация данных через Pydantic]
+                P1 --> Cond{Данные<br>валидны?}
+                Cond -- Нет --> Err[/Отправка ошибки 422/]
+                Err --> End([Конец])
+                Cond -- Да --> P2[Запись в БД SQLAlchemy]
+                P2 --> P3[Commit & Refresh]
+                P3 --> Out[/Отправка ответа 201 Created/]
+                Out --> End
+        </div>
+    </div>
+
+    <div class="algorithm-container">
+        <h2>АЛГОРИТМ 3: АУТЕНТИФИКАЦИЯ (JWT)</h2>
+        <div class="mermaid">
+            flowchart TD
+                Start([Начало]) --> Req[/Получение POST /token с Login и Password/]
+                Req --> P0[Поиск пользователя в БД]
+                P0 --> Cond1{Пользователь<br>найден?}
+                Cond1 -- Нет --> Err[/Отправка ошибки 401/]
+                Err --> End([Конец])
+                Cond1 -- Да --> P1[Проверка хеша пароля bcrypt]
+                P1 --> Cond2{Пароль<br>верный?}
+                Cond2 -- Нет --> Err
+                Cond2 -- Да --> P2[Генерация токена JWT]
+                P2 --> Out[/Возврат JWT токена/]
+                Out --> End
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                primaryTextColor: '#000000',
+                primaryBorderColor: '#000000',
+                lineColor: '#000000',
+                secondaryColor: '#ffffff',
+                tertiaryColor: '#ffffff',
+                fontFamily: 'Arial'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

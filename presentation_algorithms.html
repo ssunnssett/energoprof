@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Алгоритмы серверной части ЭнергоПроф</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 280px;
+            border: 1px solid #f1f5f9;
+            padding: 20px 10px;
+            border-radius: 20px;
+        }
+
+        .node {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1.5px solid #1e293b;
+            background: #ffffff;
+            font-weight: 600;
+            font-size: 11px;
+            text-align: center;
+            width: 160px;
+            position: relative;
+        }
+
+        .start-stop { border-radius: 20px; background: #f8fafc; border-style: solid; border-width: 2px; }
+        
+        .decision {
+            width: 70px;
+            height: 70px;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid #3b82f6;
+            margin: 10px 0;
+            background: #eff6ff;
+            flex-shrink: 0;
+        }
+
+        .decision span {
+            transform: rotate(-45deg);
+            font-weight: 700;
+            font-size: 9px;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .process { border-color: #64748b; }
+        .error { border-color: #ef4444; color: #ef4444; background: #fef2f2; font-size: 9px; width: 100px; }
+        .success { border-color: #22c55e; color: #166534; background: #f0fdf4; }
+
+        .arrow {
+            width: 1.5px;
+            height: 15px;
+            background: #94a3b8;
+            position: relative;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: -3px;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 6px solid #94a3b8;
+        }
+
+        .side-container {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 200px;
+        }
+
+        .side-branch {
+            height: 1.5px;
+            background: #94a3b8;
+            width: 20px;
+        }
+
+        .label {
+            font-size: 9px;
+            font-weight: 800;
+            color: #64748b;
+        }
+
+        h3 { 
+            font-size: 13px;
+            text-transform: uppercase; 
+            color: #0f172a; 
+            margin: 0 0 15px 0; 
+            text-align: center;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-branch {
+            position: absolute;
+            right: -110px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- АЛГОРИТМ 1 -->
+    <div class="flowchart">
+        <h3>Аутентификация (JWT)</h3>
+        <div class="node start-stop">Начало: POST /token</div>
+        <div class="arrow"></div>
+        <div class="node process">Ввод Login / Password</div>
+        <div class="arrow"></div>
+        <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 100%;">
+            <div class="decision"><span>Пользователь<br>найден?</span></div>
+            <div class="error-branch">
+                <div class="side-branch"></div>
+                <div class="node error">Ошибка 401<br><span class="label">НЕТ</span></div>
+            </div>
+        </div>
+        <div class="arrow" style="margin-top: -5px;"></div>
+        <div class="label" style="margin-top: -10px;">ДА</div>
+        <div class="node process">Проверка хеша (bcrypt)</div>
+        <div class="arrow"></div>
+        <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 100%;">
+            <div class="decision"><span>Пароль<br>верный?</span></div>
+            <div class="error-branch">
+                <div class="side-branch"></div>
+                <div class="node error">Ошибка 401<br><span class="label">НЕТ</span></div>
+            </div>
+        </div>
+        <div class="arrow" style="margin-top: -5px;"></div>
+        <div class="label" style="margin-top: -10px;">ДА</div>
+        <div class="node process">Генерация токена</div>
+        <div class="arrow"></div>
+        <div class="node success">Возврат JWT</div>
+        <div class="arrow"></div>
+        <div class="node start-stop">Конец</div>
+    </div>
+
+    <!-- АЛГОРИТМ 2 -->
+    <div class="flowchart">
+        <h3>Обработка заявки</h3>
+        <div class="node start-stop">Начало: New Application</div>
+        <div class="arrow"></div>
+        <div class="node process">Валидация Pydantic</div>
+        <div class="arrow"></div>
+        <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 100%;">
+            <div class="decision"><span>Данные<br>валидны?</span></div>
+            <div class="error-branch">
+                <div class="side-branch"></div>
+                <div class="node error">Ошибка 422<br><span class="label">НЕТ</span></div>
+            </div>
+        </div>
+        <div class="arrow" style="margin-top: -5px;"></div>
+        <div class="label" style="margin-top: -10px;">ДА</div>
+        <div class="node process">Запись в БД (SQLAlchemy)</div>
+        <div class="arrow"></div>
+        <div class="node process">Commit & Refresh</div>
+        <div class="arrow"></div>
+        <div class="node success">Ответ: 201 Created</div>
+        <div class="arrow"></div>
+        <div class="node start-stop">Конец</div>
+    </div>
+
+    <!-- АЛГОРИТМ 3 -->
+    <div class="flowchart">
+        <h3>Откат действия</h3>
+        <div class="node start-stop">Начало: POST /rollback</div>
+        <div class="arrow"></div>
+        <div class="node process">Поиск AdminLog по ID</div>
+        <div class="arrow"></div>
+        <div class="node process">Парсинг before_state</div>
+        <div class="arrow"></div>
+        <div class="node process">Поиск объекта в базе</div>
+        <div class="arrow"></div>
+        <div class="node process">Применение состояния</div>
+        <div class="arrow"></div>
+        <div class="node process">Сохранение изменений</div>
+        <div class="arrow"></div>
+        <div class="node success">Успешный откат</div>
+        <div class="arrow"></div>
+        <div class="node start-stop">Конец</div>
+    </div>
+
+</body>
+</html>

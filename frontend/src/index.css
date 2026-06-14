@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --surface: 0 0% 100%;
+    --primary: 217 91% 60%;
+    --accent: 25 95% 53%;
+    --text: 222 47% 11%;
+    --muted: 215 16% 47%;
+    --border: 214 32% 91%;
+  }
+
+  .dark {
+    --background: 240 20% 5%;
+    --surface: 240 19% 9%;
+    --primary: 217 91% 60%;
+    --accent: 25 95% 53%;
+    --text: 210 40% 96%;
+    --muted: 215 20% 65%;
+    --border: 217 19% 27%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--text));
+    @apply font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-border/20 dark:border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+  }
+  
+  .glass-card {
+    @apply glass rounded-[40px] p-6 transition-all duration-500 relative overflow-hidden z-10;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .dark .glass-card::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);
+  }
+
+  .glass-card:hover {
+    @apply bg-white/10 shadow-[0_0_40px_rgba(59,130,246,0.2)] scale-[1.02] -translate-y-1;
+  }
+
+  /* Dynamic Electric Wave Backgrounds for Cards */
+  .electric-waves {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at center, rgba(59,130,246,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at center, rgba(249,115,22,0.2) 0%, transparent 50%);
+    background-position: 0% 0%, 50% 50%;
+    background-size: 100% 100%, 150% 150%;
+    transform: translate(-50%, -50%);
+    animation: rotateWaves 10s infinite linear;
+    z-index: -2;
+    pointer-events: none;
+    filter: blur(30px);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .glass-card:hover .electric-waves {
+    opacity: 1;
+  }
+
+  @keyframes rotateWaves {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden rounded-full bg-primary text-white font-medium px-6 py-3 transition-all duration-300 
+           hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:bg-blue-400 active:scale-95 flex items-center justify-center gap-2;
+  }
+  
+  .btn-accent {
+    @apply relative overflow-hidden rounded-full bg-accent text-white font-medium px-6 py-3 transition-all duration-300 
+           hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] hover:bg-orange-400 active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .btn-ghost {
+    @apply rounded-full bg-transparent border border-white/20 text-white font-medium px-6 py-3 transition-all duration-300
+           hover:bg-white/10 active:scale-95 flex items-center justify-center gap-2;
+  }
+  
+  /* Skeleton loader */
+  .skeleton {
+    @apply animate-pulse bg-white/10 rounded-md;
+  }
+  /* Gradient Animation */
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+}

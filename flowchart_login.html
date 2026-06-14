@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блок-схема процесса входа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+    </style>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                primaryTextColor: '#000000',
+                primaryBorderColor: '#000000',
+                lineColor: '#000000',
+                secondaryColor: '#ffffff',
+                tertiaryColor: '#ffffff',
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '14px'
+            },
+            flowchart: {
+                htmlLabels: true
+            }
+        });
+    </script>
+</head>
+<body>
+    <h2>Блок-схема: Процесс входа (Авторизация)</h2>
+    <div class="mermaid">
+        graph TD
+            A(["<b>НАЧАЛО</b><br>Страница входа"])
+            B[/"<b>ВВОД ДАННЫХ</b><br>Логин и пароль"/]
+            C["<b>POST /token</b><br>Отправка на backend"]
+            D["<b>ПОИСК В БД</b><br>Таблица User"]
+            E{"<b>НАЙДЕН?</b>"}
+            F(["<b>ОШИБКА 401</b><br>Неверные данные"])
+            G["<b>ПРОВЕРКА ПАРОЛЯ</b><br>bcrypt.checkpw()"]
+            H{"<b>ВЕРНЫЙ?</b>"}
+            I(["<b>ОШИБКА 401</b><br>Неверные данные"])
+            J["<b>СОЗДАНИЕ JWT</b><br>create_access_token()"]
+            K[/"<b>ОТВЕТ СЕРВЕРА</b><br>access_token + role"/]
+            L["<b>СОХРАНЕНИЕ</b><br>localStorage.setItem()"]
+            M(["<b>УСПЕХ</b><br>Переход /admin или /"])
+
+            A --> B
+            B --> C
+            C --> D
+            D --> E
+            E -- НЕТ --> F
+            E -- ДА --> G
+            G --> H
+            H -- НЕТ --> I
+            H -- ДА --> J
+            J --> K
+            K --> L
+            L --> M
+    </div>
+</body>
+</html>

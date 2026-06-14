@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Макет - Дашборд</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap');
+        body { background-color: #0f111a; color: white; font-family: 'Inter', sans-serif; overflow: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; }
+        .text-primary { color: #FF8C00; }
+        .bg-primary { background-color: #FF8C00; }
+        .bg-primary-10 { background-color: rgba(255, 140, 0, 0.1); }
+        .border-primary-30 { border-color: rgba(255, 140, 0, 0.3); }
+    </style>
+</head>
+<body class="p-8 h-screen w-screen flex gap-8 box-border">
+    <!-- Sidebar Mini -->
+    <div class="glass w-20 p-6 flex flex-col items-center justify-between h-full shadow-2xl">
+        <div class="text-primary font-black text-2xl">E</div>
+    </div>
+    
+    <div class="flex-1 overflow-auto">
+        <h1 class="text-4xl font-black uppercase tracking-tight mb-8">Обзор (Дашборд)</h1>
+        
+        <div class="grid grid-cols-3 gap-6 mb-6">
+            <!-- Area Chart -->
+            <div class="glass col-span-2 p-8 h-80 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-5"><svg class="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"></path></svg></div>
+                <h3 class="text-xl font-black uppercase flex items-center gap-2 relative z-10">
+                    <span class="text-primary">●</span> Динамика активности
+                </h3>
+                <div class="h-48 w-full border-b border-l border-white/10 relative z-10 flex items-end pb-2 pl-2">
+                    <!-- SVG Chart line mock -->
+                    <svg class="w-full h-[90%] overflow-visible" viewBox="0 0 100 50" preserveAspectRatio="none">
+                        <path d="M0,40 Q10,30 20,45 T40,25 T60,35 T80,10 T100,20 L100,50 L0,50 Z" fill="rgba(59, 130, 246, 0.3)" />
+                        <path d="M0,40 Q10,30 20,45 T40,25 T60,35 T80,10 T100,20" fill="none" stroke="#3b82f6" stroke-width="2" />
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Pie Chart -->
+            <div class="glass p-8 h-80 flex flex-col items-center justify-between shadow-2xl">
+                <h3 class="text-xl font-black uppercase w-full">Спрос</h3>
+                <div class="relative w-40 h-40">
+                    <!-- Pure CSS Pie Mockup -->
+                    <div class="absolute inset-0 rounded-full border-[20px] border-blue-500 border-t-green-500 border-r-yellow-500 border-l-red-500 opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)]"></div>
+                </div>
+                <div class="flex gap-2 flex-wrap justify-center mt-4 text-[10px] font-bold uppercase">
+                    <span class="text-blue-500 bg-blue-500/10 px-2 py-1 rounded">Новые</span>
+                    <span class="text-green-500 bg-green-500/10 px-2 py-1 rounded">Успех</span>
+                    <span class="text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded">В работе</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Widgets -->
+        <div class="grid grid-cols-3 gap-6">
+            <div class="glass p-8 bg-gradient-to-br from-primary-10 to-transparent shadow-xl border-t border-l border-[#FF8C00]/30">
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2">Конверсия за день</p>
+                <div class="flex items-baseline gap-2">
+                    <h2 class="text-5xl font-black">92%</h2>
+                    <span class="text-green-500 font-bold">↑</span>
+                </div>
+            </div>
+            <div class="glass p-8 bg-gradient-to-br from-blue-500/10 to-transparent shadow-xl">
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 mb-2">Записи в логах</p>
+                <h2 class="text-5xl font-black">4,203</h2>
+            </div>
+            <div class="glass p-8 shadow-xl relative overflow-hidden">
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2 flex items-center gap-2">
+                    <span class="text-primary w-2 h-2 rounded-full bg-primary"></span> Популярная ниша
+                </p>
+                <!-- Simple Bar chart mock -->
+                <div class="flex items-end h-16 gap-2 mt-4">
+                    <div class="w-full bg-blue-500 h-[80%] rounded-t-md opacity-80"></div>
+                    <div class="w-full bg-purple-500 h-[60%] rounded-t-md opacity-80"></div>
+                    <div class="w-full bg-primary h-[100%] rounded-t-md"></div>
+                    <div class="w-full bg-green-500 h-[40%] rounded-t-md opacity-80"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

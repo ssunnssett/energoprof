@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блок-схема процесса входа - Energoprof</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1em;
+        }
+
+        .flowchart {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding: 20px 0;
+            min-width: max-content;
+        }
+
+        .step {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .box {
+            background: white;
+            color: #333;
+            padding: 20px 25px;
+            border: 2px solid #333;
+            min-width: 180px;
+            max-width: 180px;
+            text-align: center;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .box.start {
+            border-radius: 40px;
+            background: #e8e8e8;
+        }
+
+        .box.decision {
+            background: white;
+            border: 2px solid #333;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            padding: 30px 15px;
+            min-width: 160px;
+            max-width: 160px;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box.success {
+            border-radius: 40px;
+            background: #e8e8e8;
+        }
+
+        .box.error {
+            border-radius: 40px;
+            background: #f0f0f0;
+        }
+
+        .box-title {
+            font-weight: 700;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .box-desc {
+            font-size: 0.75em;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        .arrow {
+            width: 50px;
+            height: 2px;
+            background: #333;
+            position: relative;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid #333;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .label {
+            position: absolute;
+            top: -25px;
+            font-size: 0.8em;
+            color: #333;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .wrapper {
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Блок-схема процесса входа</h1>
+        <p class="subtitle">Система аутентификации Energoprof</p>
+        
+        <div class="wrapper">
+            <div class="flowchart">
+                <div class="step">
+                    <div class="box start">
+                        <div class="box-title">НАЧАЛО</div>
+                        <div class="box-desc">Страница входа</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box">
+                        <div class="box-title">ВВОД ДАННЫХ</div>
+                        <div class="box-desc">Логин и пароль</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box">
+                        <div class="box-title">POST /token</div>
+                        <div class="box-desc">Отправка на backend</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box">
+                        <div class="box-title">ПОИСК В БД</div>
+                        <div class="box-desc">Таблица User</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box decision">
+                        <div>
+                            <div class="box-title">НАЙДЕН?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrow">
+                    <span class="label">НЕТ</span>
+                </div>
+
+                <div class="step">
+                    <div class="box error">
+                        <div class="box-title">ОШИБКА 401</div>
+                        <div class="box-desc">Неверные данные</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="flowchart">
+                <div class="step">
+                    <div class="box decision">
+                        <div>
+                            <div class="box-title">НАЙДЕН?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrow">
+                    <span class="label">ДА</span>
+                </div>
+
+                <div class="step">
+                    <div class="box">
+                        <div class="box-title">ПРОВЕРКА ПАРОЛЯ</div>
+                        <div class="box-desc">bcrypt.checkpw()</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box decision">
+                        <div>
+                            <div class="box-title">ВЕРНЫЙ?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrow">
+                    <span class="label">НЕТ</span>
+                </div>
+
+                <div class="step">
+                    <div class="box error">
+                        <div class="box-title">ОШИБКА 401</div>
+                        <div class="box-desc">Неверные данные</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="flowchart">
+                <div class="step">
+                    <div class="box decision">
+                        <div>
+                            <div class="box-title">ВЕРНЫЙ?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrow">
+                    <span class="label">ДА</span>
+                </div>
+
+                <div class="step">
+                    <div class="box">
+                        <div class="box-title">СОЗДАНИЕ JWT</div>
+                        <div class="box-desc">create_access_token()</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box">
+                        <div class="box-title">ОТВЕТ СЕРВЕРА</div>
+                        <div class="box-desc">access_token + role</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box">
+                        <div class="box-title">СОХРАНЕНИЕ</div>
+                        <div class="box-desc">localStorage.setItem()</div>
+                    </div>
+                </div>
+
+                <div class="arrow"></div>
+
+                <div class="step">
+                    <div class="box success">
+                        <div class="box-title">УСПЕХ</div>
+                        <div class="box-desc">Переход /admin или /</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

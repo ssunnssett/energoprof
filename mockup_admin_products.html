@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Макет - Управление товарами</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap');
+        body { background-color: #0f111a; color: white; font-family: 'Inter', sans-serif; overflow: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; }
+        .text-primary { color: #FF8C00; }
+        .bg-primary { background-color: #FF8C00; }
+        .bg-primary-10 { background-color: rgba(255, 140, 0, 0.1); }
+    </style>
+</head>
+<body class="p-8 h-screen w-screen flex gap-8 box-border relative">
+    <!-- Sidebar Mini -->
+    <div class="glass w-20 p-6 flex flex-col items-center justify-between h-full shadow-2xl">
+        <div class="text-primary font-black text-2xl">E</div>
+    </div>
+
+    <!-- Background Content (blurred under modal) -->
+    <div class="flex-1 overflow-auto flex flex-col opacity-30 filter blur-sm">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-black uppercase tracking-tight">Каталог товаров</h1>
+            <button class="flex items-center gap-2 py-3 px-6 bg-primary text-white rounded-2xl shadow-xl shadow-[#FF8C00]/20 font-bold uppercase tracking-widest text-xs">
+                Добавить товар
+            </button>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-6">
+            <!-- Product Cards -->
+            <div class="glass rounded-[32px] p-5 flex flex-col relative group border border-primary/30">
+                <!-- Hover actions (simulated as visible for mockup) -->
+                <div class="absolute top-4 right-4 flex gap-2 z-10">
+                    <div class="p-2.5 bg-blue-500 text-white rounded-xl shadow-lg shadow-blue-500/20">✎</div>
+                    <div class="p-2.5 bg-red-500 text-white rounded-xl shadow-lg shadow-red-500/20">🗑</div>
+                </div>
+                <div class="h-48 bg-white/5 rounded-2xl mb-5 flex items-center justify-center overflow-hidden border border-white/5 p-4">
+                    <div class="w-full h-full bg-gray-700/50 rounded-xl flex items-center justify-center text-gray-500 text-xs">IMG PLACEHOLDER</div>
+                </div>
+                <h3 class="text-sm font-bold uppercase tracking-tight mb-2 pr-4 leading-tight">Генератор АД-100-Т400</h3>
+                <div class="mt-auto pt-4 flex items-center justify-between border-t border-white/10">
+                    <span class="text-xl font-black text-primary">950 000 ₽</span>
+                    <span class="text-[10px] font-bold text-gray-400 bg-white/5 px-2 py-1 rounded-lg">5 шт.</span>
+                </div>
+            </div>
+            <!-- More cards... -->
+            <div class="glass rounded-[32px] p-5 flex flex-col border-white/5"><div class="h-48 bg-white/5 rounded-2xl mb-5"></div><h3 class="h-4 bg-white/10 rounded w-3/4 mb-4"></h3><div class="h-6 bg-primary-10 rounded w-1/2"></div></div>
+            <div class="glass rounded-[32px] p-5 flex flex-col border-white/5"><div class="h-48 bg-white/5 rounded-2xl mb-5"></div><h3 class="h-4 bg-white/10 rounded w-3/4 mb-4"></h3><div class="h-6 bg-primary-10 rounded w-1/2"></div></div>
+            <div class="glass rounded-[32px] p-5 flex flex-col border-white/5"><div class="h-48 bg-white/5 rounded-2xl mb-5"></div><h3 class="h-4 bg-white/10 rounded w-3/4 mb-4"></h3><div class="h-6 bg-primary-10 rounded w-1/2"></div></div>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="absolute inset-0 z-50 flex items-center justify-center pointer-events-none">
+        <div class="glass w-full max-w-2xl bg-[#1a1d2d]/90 p-8 shadow-[0_0_50px_rgba(0,0,0,0.5)] border-white/20 pointer-events-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-black uppercase tracking-tight">Добавление товара</h2>
+                <div class="text-gray-400 hover:text-white cursor-pointer text-xl">✕</div>
+            </div>
+            
+            <div class="space-y-5">
+                <div class="grid grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Название</label>
+                        <input type="text" class="w-full glass bg-white/5 px-4 py-3 rounded-xl text-sm font-medium border-white/10 focus:border-[#FF8C00] outline-none text-white" value="Бензогенератор 5кВт">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Категория</label>
+                        <select class="w-full glass bg-white/5 px-4 py-3 rounded-xl text-sm font-medium border-white/10 outline-none text-white appearance-none">
+                            <option>Бензиновые генераторы</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-5">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Цена (₽)</label>
+                        <input type="text" class="w-full glass bg-white/5 px-4 py-3 rounded-xl text-sm font-medium border-white/10 outline-none text-white" value="45000">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Мощность (кВт)</label>
+                        <input type="text" class="w-full glass bg-white/5 px-4 py-3 rounded-xl text-sm font-medium border-white/10 outline-none text-white" value="5">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">На складе</label>
+                        <input type="number" class="w-full glass bg-white/5 px-4 py-3 rounded-xl text-sm font-medium border-white/10 outline-none text-white" value="10">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex justify-end gap-3 pt-6 border-t border-white/10">
+                <button class="px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-all">Отмена</button>
+                <button class="bg-primary text-white px-8 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-lg shadow-[#FF8C00]/20 hover:scale-105 transition-transform">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

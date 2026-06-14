@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - Energoprof (Макет)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: #fff;
+            border-bottom: 3px solid #ddd;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e8f4ff;
+            color: #0066cc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 2px dashed #0066cc;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .hero h1 .highlight {
+            color: #0066cc;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Service Section */
+        .service {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            padding: 60px 0;
+            border-bottom: 2px dashed #ddd;
+        }
+
+        .service:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .service-image {
+            flex: 1;
+            background: #e0e0e0;
+            border: 3px solid #999;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .service-image::before {
+            content: '[ИЗОБРАЖЕНИЕ]';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #999;
+            font-weight: bold;
+            z-index: -1;
+        }
+
+        .service-content {
+            flex: 1;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #e8f4ff;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .service-content h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .service-subtitle {
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .service-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #fff;
+            border: 2px solid #0066cc;
+            color: #0066cc;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #0066cc;
+            color: #fff;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: #fff;
+            padding: 60px 40px;
+            margin: 60px 0;
+            border: 3px solid #ddd;
+            border-radius: 12px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .trust-item {
+            padding: 20px;
+        }
+
+        .trust-icon {
+            width: 60px;
+            height: 60px;
+            background: #e8f4ff;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .trust-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .trust-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Wireframe annotations */
+        .annotation {
+            background: #fff3cd;
+            border: 2px dashed #ffc107;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 12px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="annotation">
+        📐 МАКЕТ СТРАНИЦЫ "УСЛУГИ" | Версия для презентации | Energoprof
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="badge">⚡ ИНЖЕНЕРНЫЕ РЕШЕНИЯ ПОД КЛЮЧ</div>
+        <h1>Наши <span class="highlight">Услуги</span></h1>
+        <p>От идеи до бесперебойного электроснабжения. Мы обеспечиваем надежность на каждом этапе жизненного цикла вашего энергооборудования.</p>
+    </div>
+
+    <div class="container">
+        <!-- Service 1 -->
+        <div class="service">
+            <div class="service-image">
+                <img src="frontend/public/img/services/audit.png" alt="Проектирование и энергоаудит">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">📐</div>
+                <h2>Проектирование и энергоаудит</h2>
+                <div class="service-subtitle">Точный расчет для максимальной эффективности</div>
+                <p>Наши инженеры проводят комплексный анализ объекта, замеряют пиковые нагрузки и учитывают пусковые токи. Мы разрабатываем проектную документацию, которая гарантирует надежность вашей системы энергоснабжения и отсутствие переплат за избыточную мощность.</p>
+                <div class="service-features">
+                    <div class="feature-item">Расчет нагрузок</div>
+                    <div class="feature-item">Схемы подключения</div>
+                    <div class="feature-item">Спецификация оборудования</div>
+                </div>
+                <button class="btn">Узнать подробнее →</button>
+            </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service">
+            <div class="service-image">
+                <img src="frontend/public/img/services/delivery.png" alt="Доставка и монтажные работы">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">🚚</div>
+                <h2>Доставка и монтажные работы</h2>
+                <div class="service-subtitle">Бережная логистика и профессиональная установка</div>
+                <p>Собственный парк спецтехники позволяет нам доставлять генераторы весом до 10 тонн в любую точку региона. Монтажная бригада подготовит фундамент, обеспечит правильную вентиляцию и отвод выхлопных газов, соблюдая все нормы пожарной безопасности.</p>
+                <div class="service-features">
+                    <div class="feature-item">Такелажные работы</div>
+                    <div class="feature-item">Установка на фундамент</div>
+                    <div class="feature-item">Системы вентиляции</div>
+                </div>
+                <button class="btn">Узнать подробнее →</button>
+            </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service">
+            <div class="service-image">
+                <img src="frontend/public/img/services/commissioning.png" alt="Пусконаладка и настройка АВР">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">⚙️</div>
+                <h2>Пусконаладка и настройка АВР</h2>
+                <div class="service-subtitle">Интеллектуальное управление питанием</div>
+                <p>Мы не просто включаем генератор. Мы настраиваем систему автоматического ввода резерва (АВР) так, чтобы переход на резервное питание происходил за миллисекунды. Проводим стресс-тесты под реальной нагрузкой и обучаем ваш персонал работе с оборудованием.</p>
+                <div class="service-features">
+                    <div class="feature-item">Настройка контроллеров</div>
+                    <div class="feature-item">Тестирование АВР</div>
+                    <div class="feature-item">Обучение персонала</div>
+                </div>
+                <button class="btn">Узнать подробнее →</button>
+            </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service">
+            <div class="service-image">
+                <img src="frontend/public/img/services/maintenance_v2.png" alt="Техническое обслуживание 24/7">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">🛡️</div>
+                <h2>Техническое обслуживание 24/7</h2>
+                <div class="service-subtitle">Ваша энергия под нашим контролем</div>
+                <p>Сервисный контракт с Энергопроф — это уверенность в завтрашнем дне. Мы берем на себя регулярное ТО, замену расходных материалов и мониторинг состояния систем. В случае аварии мобильная бригада выезжает на объект в течение 2 часов.</p>
+                <div class="service-features">
+                    <div class="feature-item">Плановое ТО</div>
+                    <div class="feature-item">Поставка запчастей</div>
+                    <div class="feature-item">Аварийный выезд</div>
+                </div>
+                <button class="btn">Узнать подробнее →</button>
+            </div>
+        </div>
+
+        <!-- Trust Section -->
+        <div class="trust-section">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon">🛡️</div>
+                    <h3>Гарантия 2 года</h3>
+                    <p>На все виды выполненных монтажных работ</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🏆</div>
+                    <h3>Сертифицировано</h3>
+                    <p>Наши инженеры прошли обучение у заводов-изготовителей</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">📞</div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Выделенная линия для экстренных обращений клиентов</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="annotation">
+        📝 ПРИМЕЧАНИЯ: Макет демонстрирует структуру страницы услуг с чередующимся расположением контента и изображений. Финальная версия будет включать анимации, градиенты и эффекты при наведении.
+    </div>
+</body>
+</html>

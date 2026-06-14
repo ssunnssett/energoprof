@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Материалы для слайда БЖД</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: #333;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Стили для таблицы */
+        .table-container {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 24px;
+            color: #1a365d;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 12px 16px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        /* Выделение несоответствий */
+        .violation td {
+            background-color: #fef2f2;
+            color: #991b1b;
+        }
+        
+        .violation td:last-child {
+            font-weight: bold;
+        }
+
+        /* Стили для списка объектов (Экспликация) */
+        .legend-container {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px 24px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: baseline;
+            font-size: 16px;
+        }
+
+        .legend-num {
+            font-weight: bold;
+            color: #2563eb;
+            min-width: 30px;
+            display: inline-block;
+        }
+        
+        .legend-text {
+            color: #334155;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Блок 1: Таблица с нарушениями -->
+    <div class="table-container">
+        <h2>Выявленные несоответствия условиям труда</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Факторы условий труда</th>
+                    <th>Единицы<br>измерения</th>
+                    <th>Нормативное<br>значение</th>
+                    <th>Измеренное<br>значение</th>
+                    <th>Заключение<br>соответствия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="violation">
+                    <td>Высота помещения</td>
+                    <td>м</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>не соответствует</td>
+                </tr>
+                <tr class="violation">
+                    <td>Площадь на одно раб. место</td>
+                    <td>кв. м</td>
+                    <td>6</td>
+                    <td>3,75</td>
+                    <td>не соответствует</td>
+                </tr>
+                <tr class="violation">
+                    <td>Объем на одно рабочее место</td>
+                    <td>куб. м</td>
+                    <td>20</td>
+                    <td>11,25</td>
+                    <td>не соответствует</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Блок 2: Экспликация оборудования -->
+    <div class="legend-container">
+        <h2>Экспликация оборудования и мебели</h2>
+        <div class="legend-grid">
+            <div class="legend-item"><span class="legend-num">1</span> <span class="legend-text">Компьютерный стол</span></div>
+            <div class="legend-item"><span class="legend-num">2</span> <span class="legend-text">Монитор</span></div>
+            <div class="legend-item"><span class="legend-num">3</span> <span class="legend-text">Клавиатура</span></div>
+            <div class="legend-item"><span class="legend-num">4</span> <span class="legend-text">Компьютерная мышь</span></div>
+            <div class="legend-item"><span class="legend-num">5</span> <span class="legend-text">Кресло</span></div>
+            <div class="legend-item"><span class="legend-num">6</span> <span class="legend-text">Настольная лампа</span></div>
+            <div class="legend-item"><span class="legend-num">7</span> <span class="legend-text">Компьютер (Системный блок)</span></div>
+            <div class="legend-item"><span class="legend-num">8</span> <span class="legend-text">Светильник</span></div>
+            <div class="legend-item"><span class="legend-num">9</span> <span class="legend-text">Огнетушитель</span></div>
+            <div class="legend-item"><span class="legend-num">10</span> <span class="legend-text">Растение</span></div>
+            <div class="legend-item"><span class="legend-num">11</span> <span class="legend-text">Дверь</span></div>
+            <div class="legend-item"><span class="legend-num">12</span> <span class="legend-text">Окно</span></div>
+            <div class="legend-item"><span class="legend-num">13</span> <span class="legend-text">Шкаф</span></div>
+            <div class="legend-item"><span class="legend-num">14</span> <span class="legend-text">Принтер</span></div>
+            <div class="legend-item"><span class="legend-num">15</span> <span class="legend-text">Огнетушитель (текстом)</span></div>
+        </div>
+    </div>
+
+</body>
+</html>

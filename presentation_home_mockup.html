@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Energoprof (Макет)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .annotation {
+            background: #fff3cd;
+            border: 2px dashed #ffc107;
+            padding: 10px;
+            margin: 20px;
+            font-size: 12px;
+            color: #856404;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #fff;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            border: 3px solid #ddd;
+            margin: 20px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '[3D ФОНОВАЯ АНИМАЦИЯ]';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            color: #e0e0e0;
+            font-weight: bold;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e8f4ff;
+            color: #0066cc;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 2px solid #0066cc;
+        }
+
+        .pulse {
+            width: 10px;
+            height: 10px;
+            background: #0066cc;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 .gradient {
+            color: #0066cc;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #0066cc;
+            color: white;
+            border: 2px solid #0066cc;
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #0066cc;
+            border: 2px solid #0066cc;
+        }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background: #f9f9f9;
+            padding: 20px 40px;
+            border-radius: 30px;
+            border: 2px solid #ddd;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0 20px;
+            border-left: 2px solid #ddd;
+        }
+
+        .stat-item:first-child {
+            border-left: none;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Features Section */
+        .features {
+            background: #fff;
+            padding: 80px 20px;
+            margin: 20px;
+            border: 3px solid #ddd;
+            border-radius: 12px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #0066cc, transparent);
+            margin: 0 auto 30px;
+        }
+
+        .section-header h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-header .gradient {
+            color: #0066cc;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #0066cc;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: #e8f4ff;
+            border: 2px solid #0066cc;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Products Section */
+        .products {
+            background: #fff;
+            padding: 80px 20px;
+            margin: 20px;
+            border: 3px solid #ddd;
+            border-radius: 12px;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .products-header h2 {
+            font-size: 40px;
+        }
+
+        .products-header a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #0066cc;
+        }
+
+        .product-image {
+            background: #e0e0e0;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #ddd;
+            position: relative;
+        }
+
+        .product-image::before {
+            content: '[ФОТО ГЕНЕРАТОРА]';
+            font-size: 16px;
+            color: #999;
+            font-weight: bold;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .product-tag {
+            background: #e8f4ff;
+            color: #0066cc;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .product-price {
+            color: #0066cc;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .product-content h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .product-features li {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00cc66;
+            font-weight: bold;
+        }
+
+        .product-card button {
+            width: 100%;
+            padding: 12px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: #fff;
+            padding: 100px 20px;
+            margin: 20px;
+            border: 3px solid #ddd;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .cta-badge {
+            display: inline-block;
+            background: #e8f4ff;
+            color: #0066cc;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border: 2px solid #0066cc;
+        }
+
+        .cta h2 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .cta h2 .gradient {
+            color: #0066cc;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 30px;
+            border: 2px solid #ddd;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .cta-form button {
+            padding: 15px 40px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .cta-note {
+            font-size: 11px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .cta h2 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="annotation">
+        📐 МАКЕТ ГЛАВНОЙ СТРАНИЦЫ | Версия для презентации | Energoprof
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <span class="pulse"></span>
+                Топовые генераторы в наличии
+            </div>
+            <h1>
+                Энергия будущего<br>
+                <span class="gradient">для ваших задач</span>
+            </h1>
+            <p>
+                Надежные бензиновые, дизельные и инверторные генераторы премиум-класса<br>
+                с гарантией от производителя.
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-primary">Перейти в каталог →</button>
+                <button class="btn btn-secondary">Подробнее</button>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">5k+</div>
+                    <div class="stat-label">Клиентов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">Лет на рынке</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Поддержка</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <div class="section-divider"></div>
+            <h2>
+                Премиальное качество<br>
+                <span class="gradient">в каждой детали</span>
+            </h2>
+            <p>
+                Мы продаем не просто генераторы, мы обеспечиваем абсолютную энергетическую независимость для вашего дома и бизнеса.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Надежность</h3>
+                <p>Европейские комплектующие и многоступенчатый контроль качества каждой сборки.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Продуктивность</h3>
+                <p>Максимальный КПД и стабильное напряжение для самой чувствительной электроники.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔋</div>
+                <h3>Автономность</h3>
+                <p>Умные системы АВР мгновенно переключают питание при перебоях в сети.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Сервис 24/7</h3>
+                <p>Собственная сервисная служба готова выехать на объект в любое время суток.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="products-header">
+            <div>
+                <h2>Популярные модели</h2>
+                <p style="color: #666; margin-top: 10px;">Генераторы, которые выбирают чаще всего</p>
+            </div>
+            <a href="#">Смотреть все →</a>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image"></div>
+                <div class="product-content">
+                    <div class="product-header">
+                        <span class="product-tag">Инверторный</span>
+                        <span class="product-price">25 000 ₽</span>
+                    </div>
+                    <h3>TSS Pro 1000X</h3>
+                    <ul class="product-features">
+                        <li>Мощность: 2.5 кВт</li>
+                        <li>Топливо: Бензин</li>
+                        <li>Автозапуск: Есть</li>
+                    </ul>
+                    <button>Оставить заявку</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"></div>
+                <div class="product-content">
+                    <div class="product-header">
+                        <span class="product-tag">Инверторный</span>
+                        <span class="product-price">50 000 ₽</span>
+                    </div>
+                    <h3>TSS Pro 2000X</h3>
+                    <ul class="product-features">
+                        <li>Мощность: 5.0 кВт</li>
+                        <li>Топливо: Бензин</li>
+                        <li>Автозапуск: Есть</li>
+                    </ul>
+                    <button>Оставить заявку</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"></div>
+                <div class="product-content">
+                    <div class="product-header">
+                        <span class="product-tag">Инверторный</span>
+                        <span class="product-price">75 000 ₽</span>
+                    </div>
+                    <h3>TSS Pro 3000X</h3>
+                    <ul class="product-features">
+                        <li>Мощность: 7.5 кВт</li>
+                        <li>Топливо: Бензин</li>
+                        <li>Автозапуск: Есть</li>
+                    </ul>
+                    <button>Оставить заявку</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-badge">Консультация эксперта</div>
+        <h2>
+            Готовы выбрать свой<br>
+            <span class="gradient">генератор?</span>
+        </h2>
+        <p>
+            Оставьте заявку, и наши инженеры подберут оптимальное решение<br>
+            с расчетом стоимости в течение 15 минут.
+        </p>
+        <form class="cta-form">
+            <input type="tel" placeholder="Ваш номер телефона">
+            <button>Получить расчет</button>
+        </form>
+        <p class="cta-note">Бесплатная консультация • Подбор за 15 минут • Гарантия лучшей цены</p>
+    </section>
+
+    <div class="annotation">
+        📝 ПРИМЕЧАНИЯ: Макет демонстрирует структуру главной страницы с hero-секцией, преимуществами, популярными товарами и формой обратной связи. Финальная версия включает 3D-анимации, частицы и плавные переходы.
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Макет - Глобальная структура панели</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap');
+        body { background-color: #0f111a; color: white; font-family: 'Inter', sans-serif; overflow: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; }
+        .text-primary { color: #FF8C00; }
+        .bg-primary-10 { background-color: rgba(255, 140, 0, 0.1); }
+        .border-primary-30 { border-color: rgba(255, 140, 0, 0.3); }
+    </style>
+</head>
+<body class="p-8 h-screen w-screen flex gap-8 box-border">
+    <!-- Sidebar -->
+    <div class="glass w-64 p-6 flex flex-col justify-between h-full shadow-2xl">
+        <div>
+            <h2 class="text-2xl font-black uppercase tracking-tighter mb-10 px-2">Admin<span class="text-primary italic">Panel</span></h2>
+            <div class="flex flex-col gap-2">
+                <div class="glass px-4 py-3 bg-primary-10 border border-primary-30 text-primary font-bold text-xs uppercase tracking-widest shadow-lg shadow-[#FF8C00]/10 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Дашборд
+                </div>
+                <div class="px-4 py-3 text-gray-500 font-bold text-xs uppercase tracking-widest">Заявки</div>
+                <div class="px-4 py-3 text-gray-500 font-bold text-xs uppercase tracking-widest">Товары</div>
+                <div class="px-4 py-3 text-gray-500 font-bold text-xs uppercase tracking-widest">Пользователи</div>
+                <div class="px-4 py-3 text-gray-500 font-bold text-xs uppercase tracking-widest">Логи действий</div>
+            </div>
+        </div>
+        <div class="text-red-500 font-bold text-xs uppercase tracking-widest px-4 hover:bg-red-500/10 py-3 rounded-xl transition-all cursor-pointer">Выход</div>
+    </div>
+    <!-- Main Content Area Placeholder -->
+    <div class="glass flex-1 p-10 flex flex-col items-center justify-center border-dashed border-2 border-white/20">
+        <div class="text-gray-500 font-black uppercase tracking-widest text-2xl mb-4">Рабочая область</div>
+        <div class="text-gray-600 text-sm">Здесь отображается контент выбранного раздела</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Структура ЭнергоПроф (SVG Arrows)</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 1100px;
+            height: 700px;
+            margin-top: 40px;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .node {
+            position: absolute;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 2px solid #64748b;
+            background: white;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            width: 140px;
+            z-index: 2;
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        /* Цвета */
+        .node.main { border-color: #1e293b; background: #f8fafc; font-size: 14px; width: 200px; }
+        .node.catalog { border-color: #8b5cf6; background: #f5f3ff; }
+        .node.auth { border-color: #22c55e; background: #f0fdf4; }
+        .node.admin { border-color: #f97316; background: #fff7ed; }
+        .node.info { border-color: #3b82f6; background: #eff6ff; }
+        .node.sub { font-weight: 500; font-size: 11px; width: 120px; }
+
+        .legend {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .l-box { width: 30px; height: 3px; border-radius: 2px; }
+
+        h1 { margin: 0; text-transform: uppercase; color: #1e293b; letter-spacing: 1px; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+    <h1>Архитектурная структура веб-приложения</h1>
+
+    <div class="legend">
+        <div class="legend-item"><div class="l-box" style="background: #cbd5e1"></div> Общий доступ</div>
+        <div class="legend-item"><div class="l-box" style="background: #22c55e"></div> Для пользователей</div>
+        <div class="legend-item"><div class="l-box" style="background: #f97316"></div> Для администратора</div>
+    </div>
+
+    <div class="canvas-container">
+        <!-- SVG ПОДЛОЖКА -->
+        <svg>
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1" />
+                </marker>
+                <marker id="arrow-green" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#22c55e" />
+                </marker>
+                <marker id="arrow-orange" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#f97316" />
+                </marker>
+            </defs>
+
+            <!-- ГЛАВНЫЕ ЛИНИИ -->
+            <path d="M 550 50 L 550 80" stroke="#cbd5e1" stroke-width="2" fill="none" />
+            <path d="M 120 80 L 980 80" stroke="#cbd5e1" stroke-width="2" fill="none" />
+            
+            <!-- Спуски к разделам -->
+            <path d="M 120 80 L 120 110" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 290 80 L 290 110" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 460 80 L 460 110" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 630 80 L 630 110" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 800 80 L 800 110" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 980 80 L 980 110" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+
+            <!-- КАТАЛОГ -->
+            <path d="M 120 150 L 120 380" stroke="#cbd5e1" stroke-width="2" fill="none" />
+            <path d="M 120 220 L 150 220" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 120 300 L 150 300" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 120 380 L 150 380" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+            <path d="M 280 300 L 320 300" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4" fill="none" marker-end="url(#arrow)" />
+
+            <!-- АВТОРИЗАЦИЯ -> КАБИНЕТ (ЗЕЛЕНЫЕ) -->
+            <path d="M 800 150 L 800 200" stroke="#22c55e" stroke-width="3" fill="none" />
+            <path d="M 800 200 L 980 200" stroke="#22c55e" stroke-width="3" fill="none" />
+            <path d="M 980 200 L 980 230" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrow-green)" />
+
+            <!-- АВТОРИЗАЦИЯ -> АДМИН (ОРАНЖЕВЫЕ) -->
+            <path d="M 800 200 L 800 230" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrow-orange)" />
+            
+            <!-- АДМИНКА ДЕТАЛИ -->
+            <path d="M 800 270 L 800 600" stroke="#f97316" stroke-width="3" fill="none" />
+            <path d="M 800 350 L 830 350" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrow-orange)" />
+            <path d="M 800 430 L 830 430" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrow-orange)" />
+            <path d="M 800 510 L 830 510" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrow-orange)" />
+            <path d="M 800 590 L 830 590" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrow-orange)" />
+        </svg>
+
+        <!-- БЛОКИ -->
+        <div class="node main" style="top: 0; left: 450px;">ГЛАВНАЯ СТРАНИЦА</div>
+
+        <!-- УРОВЕНЬ 1 -->
+        <div class="node catalog" style="top: 110px; left: 50px;">КАТАЛОГ</div>
+        <div class="node info" style="top: 110px; left: 220px;">УСЛУГИ</div>
+        <div class="node info" style="top: 110px; left: 390px;">ПРОЕКТЫ</div>
+        <div class="node info" style="top: 110px; left: 560px;">КОНТАКТЫ</div>
+        <div class="node auth" style="top: 110px; left: 730px;">ВХОД</div>
+        <div class="node auth" style="top: 110px; left: 910px;">РЕГИСТРАЦИЯ</div>
+
+        <!-- КАТАЛОГ ДЕТАЛИ -->
+        <div class="node sub" style="top: 200px; left: 160px;">Дизельные ген.</div>
+        <div class="node sub" style="top: 280px; left: 160px;">Бензиновые ген.</div>
+        <div class="node sub" style="top: 360px; left: 160px;">ИБП / АВР</div>
+        <div class="node sub" style="top: 280px; left: 330px; border-color: #3b82f6;">Карточка товара</div>
+
+        <!-- АВТОРИЗОВАННЫЕ -->
+        <div class="node admin" style="top: 230px; left: 730px;">АДМИН-ПАНЕЛЬ</div>
+        <div class="node auth" style="top: 230px; left: 910px;">ЛИЧНЫЙ КАБИНЕТ</div>
+
+        <!-- АДМИНКА ДЕТАЛИ -->
+        <div class="node sub" style="top: 330px; left: 840px;">Дашборд</div>
+        <div class="node sub" style="top: 410px; left: 840px;">Заявки</div>
+        <div class="node sub" style="top: 490px; left: 840px;">Товары</div>
+        <div class="node sub" style="top: 570px; left: 840px; border-width: 3px;">Логи и Откат</div>
+    </div>
+
+</body>
+</html>

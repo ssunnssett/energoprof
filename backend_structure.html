@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Структура серверной части проекта</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 700px;
+            width: 100%;
+            border: 1px solid #e0e0e0;
+        }
+
+        .header {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .header h1 {
+            color: #333333;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header h1::before {
+            content: "📁";
+            font-size: 24px;
+        }
+
+        .file-tree {
+            padding: 30px;
+            color: #333333;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .folder {
+            color: #0066cc;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .folder::before {
+            content: "📂";
+            font-size: 18px;
+        }
+
+        .file-list {
+            margin-left: 30px;
+            list-style: none;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            transition: background 0.2s;
+            border-radius: 4px;
+            padding-left: 10px;
+        }
+
+        .file-item:hover {
+            background: #f0f0f0;
+        }
+
+        .file-icon {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .file-name {
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .file-name.python {
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        .file-name.db {
+            color: #d97706;
+            font-weight: 600;
+        }
+
+        .file-name.txt {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .file-description {
+            color: #059669;
+            font-size: 13px;
+            margin-left: auto;
+            font-style: italic;
+        }
+
+        .subfolder {
+            color: #0066cc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0 6px 10px;
+            border-radius: 4px;
+        }
+
+        .subfolder::before {
+            content: "📁";
+            font-size: 16px;
+        }
+
+        .subfolder:hover {
+            background: #f0f0f0;
+        }
+
+        .tree-line {
+            color: #cccccc;
+            margin-right: 5px;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 15px 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #666666;
+            font-size: 13px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #0066cc;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>backend/ <span class="badge">Серверная часть</span></h1>
+        </div>
+        
+        <div class="file-tree">
+            <ul class="file-list">
+                <li class="file-item">
+                    <span class="file-icon">🐍</span>
+                    <span class="file-name python">main.py</span>
+                    <span class="file-description">Основное приложение FastAPI</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">🗂️</span>
+                    <span class="file-name python">models.py</span>
+                    <span class="file-description">Модели базы данных</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">📋</span>
+                    <span class="file-name python">schemas.py</span>
+                    <span class="file-description">Pydantic схемы</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">🔐</span>
+                    <span class="file-name python">auth.py</span>
+                    <span class="file-description">Аутентификация JWT</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">💾</span>
+                    <span class="file-name python">database.py</span>
+                    <span class="file-description">Подключение к БД</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">📦</span>
+                    <span class="file-name txt">requirements.txt</span>
+                    <span class="file-description">Зависимости Python</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">🗄️</span>
+                    <span class="file-name db">energoprof.db</span>
+                    <span class="file-description">База данных SQLite</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">🌱</span>
+                    <span class="file-name python">seed.py</span>
+                    <span class="file-description">Заполнение БД данными</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">🔍</span>
+                    <span class="file-name python">check_nulls.py</span>
+                    <span class="file-description">Проверка данных</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">🔎</span>
+                    <span class="file-name python">inspect_products.py</span>
+                    <span class="file-description">Инспекция товаров</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">🖼️</span>
+                    <span class="file-name python">update_images.py</span>
+                    <span class="file-description">Обновление изображений</span>
+                </li>
+                
+                <li class="file-item">
+                    <span class="file-icon">✅</span>
+                    <span class="file-name python">verify_fix.py</span>
+                    <span class="file-description">Верификация исправлений</span>
+                </li>
+                
+                <li class="subfolder">
+                    <span class="file-name">venv/</span>
+                    <span class="file-description">Виртуальное окружение</span>
+                </li>
+                
+                <li class="subfolder">
+                    <span class="file-name">__pycache__/</span>
+                    <span class="file-description">Кэш Python</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            Веб-ресурс «Энергопроф» • FastAPI + SQLAlchemy + JWT
+        </div>
+    </div>
+</body>
+</html>
