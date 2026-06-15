@@ -58,7 +58,7 @@ export const Contact = () => {
         e.preventDefault();
         setSending(true);
         try {
-            await axios.post('http://127.0.0.1:8000/applications', {
+            await axios.post('/applications', {
                 name,
                 phone,
                 message,
@@ -168,3 +168,4 @@ export const Contact = () => {
       </div>
     );
 };
+

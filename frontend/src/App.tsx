@@ -44,7 +44,7 @@ function App() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await axios.post('http://127.0.0.1:8000/applications', {
+      await axios.post('/applications', {
         name,
         phone,
         message: 'Lead Source: Website',
@@ -155,3 +155,4 @@ function App() {
 }
 
 export default App;
+

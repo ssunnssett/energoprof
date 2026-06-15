@@ -96,3 +96,4 @@ const Particles: React.FC<ParticlesProps> = ({ color = 'rgba(59, 130, 246, 0.5)'
 };
 
 export default Particles;
+

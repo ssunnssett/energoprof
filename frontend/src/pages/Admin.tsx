@@ -142,21 +142,21 @@ const AdminPanel = () => {
   const fetchData = async () => {
       try {
           if (activeTab === 'users') {
-              const res = await axios.get('http://127.0.0.1:8000/api/users', { headers });
+              const res = await axios.get('/api/users', { headers });
               setUsers(res.data);
           } else if (activeTab === 'leads') {
-              const res = await axios.get('http://127.0.0.1:8000/applications', { headers });
+              const res = await axios.get('/applications', { headers });
               setLeads(res.data);
           } else if (activeTab === 'products') {
-              const res = await axios.get('http://127.0.0.1:8000/products');
+              const res = await axios.get('/products');
               setProducts(res.data);
           } else if (activeTab === 'logs') {
-              const res = await axios.get('http://127.0.0.1:8000/api/logs', { headers });
+              const res = await axios.get('/api/logs', { headers });
               setLogs(res.data);
           } else if (activeTab === 'dashboard') {
-              const res1 = await axios.get('http://127.0.0.1:8000/applications', { headers });
-              const res2 = await axios.get('http://127.0.0.1:8000/products');
-              const res3 = await axios.get('http://127.0.0.1:8000/api/logs', { headers });
+              const res1 = await axios.get('/applications', { headers });
+              const res2 = await axios.get('/products');
+              const res3 = await axios.get('/api/logs', { headers });
               setLeads(res1.data);
               setProducts(res2.data);
               setLogs(res3.data);
@@ -176,7 +176,7 @@ const AdminPanel = () => {
 
   const updateLeadStatus = async (id: number, status: string) => {
       try {
-          await axios.put(`http://127.0.0.1:8000/applications/${id}`, { status }, { headers });
+          await axios.put(`/applications/${id}`, { status }, { headers });
           fetchData();
       } catch (err) {
           showNotification('Ошибка обновления статуса', 'error');
@@ -187,10 +187,10 @@ const AdminPanel = () => {
       e.preventDefault();
       try {
           if (editingProduct) {
-              await axios.put(`http://127.0.0.1:8000/products/${editingProduct.id}`, productForm, { headers });
+              await axios.put(`/products/${editingProduct.id}`, productForm, { headers });
               showNotification('Товар успешно обновлен');
           } else {
-              await axios.post('http://127.0.0.1:8000/products', productForm, { headers });
+              await axios.post('/products', productForm, { headers });
               showNotification('Товар успешно добавлен');
           }
           setIsProductModalOpen(false);
@@ -203,7 +203,7 @@ const AdminPanel = () => {
   const deleteProduct = async (id: number) => {
       if(window.confirm('Удалить товар?')) {
           try {
-              await axios.delete(`http://127.0.0.1:8000/products/${id}`, { headers });
+              await axios.delete(`/products/${id}`, { headers });
               showNotification('Товар успешно удален');
               fetchData();
           } catch(err) {
@@ -225,7 +225,7 @@ const AdminPanel = () => {
 
   const rollbackLog = async (logId: number) => {
       try {
-          await axios.post(`http://127.0.0.1:8000/api/logs/${logId}/rollback`, {}, { headers });
+          await axios.post(`/api/logs/${logId}/rollback`, {}, { headers });
           setRollbackLogItem(null);
           showNotification('Действие успешно откачено');
           fetchData();
@@ -928,3 +928,4 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
+

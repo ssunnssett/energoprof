@@ -25,7 +25,7 @@ const Catalog = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:8000/products');
+        const res = await axios.get('/products');
         setProducts(res.data);
       } catch (err) {
         console.error(err);
@@ -283,3 +283,4 @@ const Catalog = () => {
 };
 
 export default Catalog;
+

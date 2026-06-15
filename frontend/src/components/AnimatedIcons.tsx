@@ -52,3 +52,4 @@ export const EnergyBoltSVG = ({ className }: { className?: string }) => (
     />
   </svg>
 );
+

@@ -16,7 +16,7 @@ const ProductDetails = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const { data } = await axios.get(`http://127.0.0.1:8000/products/${id}`);
+                const { data } = await axios.get(`/products/${id}`);
                 setProduct({
                     ...data,
                     // Mock specs since backend doesn't store them all
@@ -210,3 +210,4 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+

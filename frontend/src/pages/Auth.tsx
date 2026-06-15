@@ -23,7 +23,7 @@ const Auth = ({ type }: { type: 'login' | 'register' }) => {
     try {
       if (type === 'login') {
         const payload = { login: email, password: password };
-        const response = await axios.post('http://127.0.0.1:8000/token', payload);
+        const response = await axios.post('/token', payload);
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('role', response.data.role);
         window.dispatchEvent(new Event('storage'));
@@ -36,7 +36,7 @@ const Auth = ({ type }: { type: 'login' | 'register' }) => {
       } else {
         // Registration endpoint
         const payload = { login: email, password: password, first_name: firstName, last_name: lastName, phone: phone };
-        const response = await axios.post('http://127.0.0.1:8000/users', payload);
+        const response = await axios.post('/users', payload);
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('role', response.data.role);
         window.dispatchEvent(new Event('storage'));
@@ -206,3 +206,4 @@ const Auth = ({ type }: { type: 'login' | 'register' }) => {
 
 export const Login = () => <Auth type="login" />;
 export const Register = () => <Auth type="register" />;
+
