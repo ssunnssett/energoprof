@@ -9,7 +9,7 @@ const Home = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="w-full flex flex-col gap-2 md:gap-3 px-2 md:px-4 pt-2 md:pt-4 pb-8 transition-colors duration-500">
+    <div className="w-full flex flex-col gap-2 md:gap-3 px-2 md:px-4 pt-2 md:pt-4 pb-8 transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] bg-surface dark:bg-[#0f111a] rounded-[24px] md:rounded-[32px] overflow-hidden flex items-center justify-center border border-border/10 dark:border-white/5 shadow-2xl transition-colors duration-500">
         {/* Ambient background glow inside section */}
@@ -33,7 +33,7 @@ const Home = () => {
               <span className="text-sm font-medium text-muted dark:text-gray-300">Топовые генераторы в наличии</span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text dark:text-white drop-shadow-sm dark:drop-shadow-lg whitespace-nowrap">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text dark:text-white drop-shadow-sm dark:drop-shadow-lg">
               Энергия будущего <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">для ваших задач</span>
             </h1>
 
